@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useState } from "react";
 
@@ -29,10 +29,13 @@ export default function NotificationSample() {
 
   return (
   <Container sx={{display: 'flex', flexDirection: 'column'}}>
+    <Typography variant="h3" sx={{marginBottom: 3}}>
+      push通知機能を試す
+    </Typography>
     <Stack>
-      <Button onClick={clickOnCheckPermission}>Check Permission</Button>
-      <Button onClick={clickOnPermissionGranted}>Permission granted</Button>
-      <Button onClick={clickNotification} >!!Notification!!</Button>
+      <Button onClick={clickOnCheckPermission} sx={{marginBottom: 3}}>permissino確認</Button>
+      <Button onClick={clickOnPermissionGranted} sx={{marginBottom: 3}}>通知設定の許可</Button>
+      <Button onClick={clickNotification} sx={{marginBottom: 3}}>通知送信</Button>
     </Stack>
     <Dialog
       open={open}

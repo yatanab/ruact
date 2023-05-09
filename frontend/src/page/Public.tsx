@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material"
 
-import Landing from "./component/Landing"
+import Landing from "../atom/Landing"
 
 export default function PublicPage() {
   return (

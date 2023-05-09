@@ -4,6 +4,16 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 
+
+// TODO 外だし
+export type Haiku = {
+  kami_no_ku: string,
+  naka_no_ku: string,
+  shimo_no_ku: string,
+  auther: string,
+  description: string,
+}
+
 const queryClient = new QueryClient()
 
 export default function App() {
@@ -16,11 +26,12 @@ export default function App() {
 
 function Example() {
   const { isPending, error, data } = useQuery({
-    queryKey: ['hey'],
-    queryFn: () =>
-      fetch('http://localhost:8080/test').then(
-        (res) => res.json(),
-      ),
+    queryKey: ['haikus'],
+    queryFn: ():Promise<Haiku[]> =>
+      fetch('http://localhost:8080/haikus').then(
+        (res) =>
+          res.json()
+      )
   })
 
   if (isPending) return <div>Loading...</div>
@@ -29,7 +40,7 @@ function Example() {
 
   return (
     <div>
-      <h1>{data.str}</h1>
+      <h1>{JSON.stringify(data)}</h1>
     </div>
   )
 }

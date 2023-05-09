@@ -1,11 +1,11 @@
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Stack} from "@mui/material";
 import React from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { fakeAuthProvider } from "../auth";
 import { URLs } from "../constant/Routers";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import LetterAvatars from "../page/component/UserAvator";
+import LetterAvatars from "../atom/UserAvator";
 
 type User = {
   userName: String

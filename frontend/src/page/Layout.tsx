@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -18,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AuthStatus } from '../auth/AuthProvider';
 import { URLs } from '../constant/Routers';
-import { AppBar, styled, SvgIconTypeMap, SwipeableDrawer } from '@mui/material';
+import { AppBar, SvgIconTypeMap, SwipeableDrawer } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 

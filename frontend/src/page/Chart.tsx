@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-import {  BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from 'recharts';
+import {  BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar} from 'recharts';
 
 export default function Chart() {
   const data = [
