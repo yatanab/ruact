@@ -1,7 +1,9 @@
-import { Stack } from "@mui/material";
+import { Container, Fab, Stack } from "@mui/material";
 import BasicCard from "../atom/Card";
 import { Haiku } from "./API";
-import { QueryClient, QueryClientProvider, useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryClientProvider, useQuery, useQueryClient } from "@tanstack/react-query";
+import AddIcon from '@mui/icons-material/Add';
+import React, { useEffect } from "react";
 
 export default function CardList() {
 
@@ -16,16 +18,38 @@ export default function CardList() {
       )
   })
 
-  if (isPending) return <div>Loading...</div>
+  // if (error) return <div>An error has occurred: {error.message}</div>
 
-  if (error) return <div>An error has occurred: {error.message}</div>
+  // ref を作成しスクロールさせたい場所にある Element にセット
+  const ref = React.createRef<HTMLDivElement>()
+  
+  useEffect(() => {
+    ref!.current?.scrollIntoView({
+      // behavior: 'smooth',
+      
+      inline: 'end',
+    })
+  },[ref]) 
 
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack spacing={2}>
-        {data?.map((v, i) => BasicCard({v: v, i: i}))}
-      </Stack>
+      <Container maxWidth='sm'>
+        {isPending ? <div>Loading...</div> : 
+          <Stack spacing={2} direction='column' ref={ref}>
+            {data?.map((v, i) => BasicCard({v: v, i: i}))}
+          </Stack>
+        }
+        <Fab 
+          color="primary"
+          sx={{
+            position: 'absolute',
+            bottom: 16,
+            right: 16,
+          }}>
+            <AddIcon />
+          </Fab>
+      </Container>
     </QueryClientProvider>
     
   )

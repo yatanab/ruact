@@ -7,11 +7,12 @@ export type User = {
 }
 
 export function UserInfo(props: {user: User}) {
+
   return (
-    <Stack direction="row" spacing={1} alignItems={"center"} sx={{margin: 1}}>
+    <Stack direction='row' alignItems={"center"} sx={{margin: 1}} className='VerticalTypography'>
       <LetterAvatars userName={props.user.name}/>
-      <Typography variant="body2">{props.user.name}</Typography>
-      <Typography variant="caption" color="text.secondary">@{props.user.userId}</Typography>
+      <Typography variant="body2" sx={{marginTop: 2}}>{props.user.name}</Typography>
+      <Typography variant="caption" color="text.secondary" sx={{marginTop: 2}}>@{props.user.userId}</Typography>
     </Stack>
   )
 }

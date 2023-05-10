@@ -37,31 +37,28 @@ async fn haiku() -> impl Responder {
 
 #[get("/haikus")]
 async fn haikus() -> impl Responder {
-    HttpResponse::Ok().json(
-        vec![
-            Haiku {
+    let mut vec = vec![
+        Haiku {
+        kami_no_ku: "早起きの".to_string(),
+        naka_no_ku: "辛さとともに".to_string(),
+        shimo_no_ku: "冬のにおい".to_string(),
+        auther: "yatanab".to_string(),
+        description: "高校のとき".to_string(),
+    }];
+
+    for n in 1..101 {
+        vec.push(
+            Haiku{
                 kami_no_ku: "早起きの".to_string(),
                 naka_no_ku: "辛さとともに".to_string(),
                 shimo_no_ku: "冬のにおい".to_string(),
-                auther: "yatanab".to_string(),
-                description: "高校のとき".to_string(),
-            },
-            Haiku {
-                kami_no_ku: "早起きの".to_string(),
-                naka_no_ku: "辛さとともに".to_string(),
-                shimo_no_ku: "冬のにおい".to_string(),
-                auther: "yatanab".to_string(),
-                description: "高校のとき".to_string(),
-            },
-            Haiku {
-                kami_no_ku: "早起きの".to_string(),
-                naka_no_ku: "辛さとともに".to_string(),
-                shimo_no_ku: "冬のにおい".to_string(),
-                auther: "yatanab".to_string(),
+                auther: n.to_string(),
                 description: "高校のとき".to_string(),
             }
-        ]
-    )
+        )
+    }
+
+    HttpResponse::Ok().json(vec)
 }
 
 #[get("/hey")]

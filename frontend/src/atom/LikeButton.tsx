@@ -13,6 +13,6 @@ export default function LikeButton() {
   const random = getRandomInt(100).toString();
 
   return (
-    <FormControlLabel control={<LikeCheckBox />} label={random} />
+    <FormControlLabel control={<LikeCheckBox />} label={random} labelPlacement='bottom' />
   )
 }

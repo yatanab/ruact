@@ -1,3 +1,19 @@
 .VerticalTypography {
   writing-mode: vertical-rl;
 }
+
+.Spring {
+  background: radial-gradient(at 10% 10%, rgba(255, 158, 235, 1), rgba(12, 12, 12, 1));
+}
+
+.Summer {
+  background: radial-gradient(at 10% 10%, rgba(2, 121, 36, 1), rgba(12, 12, 12, 12));
+}
+
+.Autumn {
+  background: radial-gradient(at 10% 10%, rgba(145, 2, 2, 1), rgba(12, 12, 12, 1));
+}
+
+.Winter {
+  background: radial-gradient(at 10% 10%, rgba(154, 154, 154, 1), rgba(12, 12, 12, 1));
+}

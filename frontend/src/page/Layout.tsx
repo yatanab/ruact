@@ -11,6 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import HomeIcon from '@mui/icons-material/Home';
 import LockIcon from '@mui/icons-material/Lock';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -77,7 +78,7 @@ export default function PersistentDrawerLeft() {
           <DrawerItem name={"Notification"} linkTo={URLs.notification} icon={NotificationsIcon}/>
           <DrawerItem name={"Chart"} linkTo={URLs.chart} icon={TimelineIcon}/>
           <DrawerItem name={"API Test"} linkTo={URLs.apiTest} icon={CloudSyncIcon}/>
-          <DrawerItem name={"Card List"} linkTo={URLs.cardList} icon={CloudSyncIcon}/>
+          <DrawerItem name={"Card List"} linkTo={URLs.cardList} icon={ViewCarouselIcon}/>
         </List>
       </Box>
     );
