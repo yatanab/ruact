@@ -78,7 +78,7 @@ export default function PersistentDrawerLeft() {
           <DrawerItem name={"Notification"} linkTo={URLs.notification} icon={NotificationsIcon}/>
           <DrawerItem name={"Chart"} linkTo={URLs.chart} icon={TimelineIcon}/>
           <DrawerItem name={"API Test"} linkTo={URLs.apiTest} icon={CloudSyncIcon}/>
-          <DrawerItem name={"Card List"} linkTo={URLs.cardList} icon={ViewCarouselIcon}/>
+          <DrawerItem name={"Hiaku"} linkTo={URLs.cardList} icon={ViewCarouselIcon}/>
         </List>
       </Box>
     );

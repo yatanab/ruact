@@ -14,6 +14,12 @@ export type Haiku = {
   description: string,
 }
 
+type User = {
+  id: number,
+  userId: string,
+  name: string,
+}
+
 const queryClient = new QueryClient()
 
 export default function App() {
@@ -26,9 +32,9 @@ export default function App() {
 
 function Example() {
   const { isPending, error, data } = useQuery({
-    queryKey: ['haikus'],
-    queryFn: ():Promise<Haiku[]> =>
-      fetch('http://localhost:8080/haikus').then(
+    queryKey: ['users'],
+    queryFn: ():Promise<User[]> =>
+      fetch('http://localhost:8080/api/users').then(
         (res) =>
           res.json()
       )

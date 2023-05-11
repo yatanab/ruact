@@ -1,0 +1,151 @@
+﻿# A5:ER FORMAT:17
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.18.0 Copyright © 1997 - 2023 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=Haiku
+Author=yatanb
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=7
+RDBMSTypeName=PostgreSQL
+GenerateDropTableStatement=1
+DropTableIfExists=1
+CreatePkIndex=1
+CreateFk=1
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=1
+CreateOrder=Dependent
+ShowTag=1
+ShowCommonAttributes=0
+BugFixEntityWidth=1
+
+[Entity]
+PName=tbl_user
+LName=ユーザー
+Comment=
+TableOption=
+Page=Main
+Left=500
+Top=250
+Field="id","id","serial","NOT NULL",0,"","",$FFFFFFFF,""
+Field="ユーザーID","user_id","varchar(100)","NOT NULL",,"","",$FFFFFFFF,""
+Field="名前","name","varchar(100)","NOT NULL",,"","",$FFFFFFFF,""
+Field="created","created","timestamp","NOT NULL",,"","",$FFFFFFFF,""
+Field="updated","updated","timestamp","NOT NULL",,"","",$FFFFFFFF,""
+Index==0,id
+Index==2,user_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230511205906
+Position="Main",500,250,144,170
+ZOrder=1
+
+[Entity]
+PName=tbl_haiku
+LName=ハイク
+Comment=
+TableOption=
+Page=Main
+Left=100
+Top=100
+Field="id","id","serial","NOT NULL",0,"","",$FFFFFFFF,""
+Field="tbl_user_id","tbl_user_id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="tbl_season_id","tbl_season_id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="上の句","kami_no_ku","varchar(10)","NOT NULL",,"","",$FFFFFFFF,""
+Field="中の句","naka_no_ku","varchar(10)","NOT NULL",,"","",$FFFFFFFF,""
+Field="下の句","shimo_no_ku","varchar(10)","NOT NULL",,"","",$FFFFFFFF,""
+Field="created","created","timestamp","NOT NULL",,"","",$FFFFFFFF,""
+Field="updated","updated","timestamp","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230511205829
+Position="Main",100,100,200,219
+ZOrder=2
+
+[Entity]
+PName=tbl_season
+LName=四季
+Comment=
+TableOption=
+Page=Main
+Left=500
+Top=100
+Field="id","id","serial","NOT NULL",0,"","",$FFFFFFFF,""
+Field="四季","season","varchar(10)",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20230511210046
+Position="Main",500,100,132,93
+ZOrder=3
+
+[Relation]
+Entity1=tbl_haiku
+Entity2=tbl_season
+RelationType1=2
+RelationType2=2
+Fields1=id
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,734,9266,1083,R,R,""
+Dependence=1
+Caption=
+PName=
+ModifiedDateTime=20230511210121
+LineMode=0
+Bar1=73
+Bar2=927
+Bar3=108
+TermPos1=R
+TermPos2=R
+ZOrder=4
+
+[Relation]
+Entity1=tbl_haiku
+Entity2=tbl_user
+RelationType1=3
+RelationType2=2
+Fields1=id
+Fields2=id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1678,8322,1049,R,R,""
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20230511233941
+LineMode=0
+Bar1=168
+Bar2=832
+Bar3=105
+TermPos1=R
+TermPos2=R
+ZOrder=5

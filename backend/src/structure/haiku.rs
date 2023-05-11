@@ -8,5 +8,3 @@ pub struct Haiku {
     pub auther: String,
     pub description: String
 }
-
-
