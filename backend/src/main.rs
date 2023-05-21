@@ -1,10 +1,14 @@
 mod handler;
 mod model;
 
+use std::env;
+
 use actix_cors::Cors;
 use actix_web::{get, App, HttpResponse, HttpServer, Responder, web};
 use sqlx::{postgres::PgPoolOptions, PgPool};
+use sqlx_core::postgres::PgConnectOptions;
 use crate::model::{User};
+use dotenv::dotenv;
 
 mod structure;
 
@@ -12,29 +16,6 @@ pub use structure::*;
 
 pub struct AppState {
     db: PgPool,
-}
-
-
-#[get("/test")]
-async fn test() -> impl Responder {
-    HttpResponse::Ok().json(
-        User {
-            id: 10,
-            user_id: "testID".to_string(),
-            name: "test name".to_string(),
-    })
-}
-
-#[get("/user")]
-async fn user(
-    data: web::Data<AppState>,
-) -> impl Responder {
-    HttpResponse::Ok().json(
-        User {
-            id: 10,
-            user_id: "testID".to_string(),
-            name: "test name".to_string(),
-    })
 }
 
 #[get("/haikus")]
@@ -63,24 +44,34 @@ async fn haikus() -> impl Responder {
     HttpResponse::Ok().json(vec)
 }
 
-#[get("/hey")]
-async fn hey() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
-}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
 
-    println!("🚀 Server started successfully");
+    dotenv().ok();
+
+    let database_host = env::var("DATABASE_HOST").expect("DATABASE_HOST must be set");
+    let database_username = env::var("DATABASE_USERNAME").expect("DATABASE_USERNAME must be set");
+    let database_password = env::var("DATABASE_PASSWORD").expect("DATABASE_PASSWORD must be set");
+    let database_name = env::var("DATABASE_NAME").expect("DATABASE_NAME must be set");
+
+    let option = PgConnectOptions::new()
+        .host(&database_host)
+        .username(&database_username)
+        .password(&database_password)
+        .database(&database_name);
 
     // Create a connection pool
     let pool = PgPoolOptions::new()
-    .max_connections(5)
-    .connect("postgres://postgres:postgres@localhost:5432/postgres").await.expect("Unable to connect to Postgres");
+        .max_connections(5)
+        .connect_with(option)
+        .await
+        .expect("Unable to connect to Postgres", );
+
+    println!("🚀 Server started successfully");
 
 
-    HttpServer::new(move || {
-                
+    HttpServer::new(move || {         
         App::new()
             .wrap(
                 Cors::default()
@@ -92,11 +83,10 @@ async fn main() -> std::io::Result<()> {
             )
             .app_data(web::Data::new(AppState { db: pool.clone() }))
             .configure(handler::config)
-            .service(hey)
-            .service(test)
             .service(haikus)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
+
 }

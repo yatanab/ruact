@@ -1,0 +1,43 @@
+version: '3'
+services:
+  database-dev:
+    image: postgres:15.2
+    container_name: database_dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - back-tier
+  
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: backend_dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database-dev
+    networks:
+      - front-tier
+      - back-tier
+  
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend_dev
+    volumes:
+      - ./frontend/src:/app/frontend/src
+    ports:
+      - "3000:3000"
+    networks:
+      - front-tier
+
+networks:
+  front-tier: {}
+  back-tier: {}
